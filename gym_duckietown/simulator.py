@@ -105,6 +105,7 @@ class Simulator(gym.Env):
         frame_rate=30,
         frame_skip=1
     ):
+
         # Map name, set in _load_map()
         self.map_name = None
 
@@ -903,6 +904,7 @@ class Simulator(gym.Env):
         # Update the robot's direction angle
         self.cur_angle += rotAngle
 
+
     def _drivable_pos(self, pos):
         """
         Check that the given (x,y,z) position is on a drivable tile
@@ -1053,17 +1055,25 @@ class Simulator(gym.Env):
         # Generate the current camera image
         obs = self.render_obs()
 
+        ########### PANOS ###########
+        # extract vl, vr, omega, v (v = self.speed)
+        Vl, Vr = action
+        l = self.wheel_dist
+        omega = (Vr - Vl)/l
+        #############################
+
+
         # If the agent is not in a valid pose (on drivable tiles)
         if not self._valid_pose():
             reward = -1000
             done = True
-            return obs, reward, done, {}
+            return obs, reward, done, {}, omega, self.speed, Vl, Vr
 
         # If the maximum time step count is reached
         if self.step_count >= self.max_steps:
             done = True
             reward = 0
-            return obs, reward, done, {}
+            return obs, reward, done, {}, omega, self.speed, Vl, Vr
 
         # Compute the collision avoidance penalty
         col_penalty = self._proximity_penalty()
@@ -1079,7 +1089,7 @@ class Simulator(gym.Env):
         )
         done = False
 
-        return obs, reward, done, {}
+        return obs, reward, done, {}, omega, self.speed, Vl, Vr
 
     def _render_img(self, width, height, multi_fbo, final_fbo, img_array):
         """
