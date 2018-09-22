@@ -48,6 +48,8 @@ will automatically cycle through all available [map files](https://github.com/du
 a variety of different maps at the same time, with the idea that training on a variety of
 different scenarios will make for a more robust policy/model.
 
+![Demo](https://github.com/PanagiotisBountouris/gym-duckietown/blob/panos/TensorFlow/training_samples_videos/left_turn_training_sample.avi)
+
 <p align="center">
 <video src="TensorFlow/training_samples_videos/left_turn_training_sample.avi" type="video/avi" width="300px"><br>
 Left-turn samples
