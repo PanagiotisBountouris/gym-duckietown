@@ -49,11 +49,10 @@ a variety of different maps at the same time, with the idea that training on a v
 different scenarios will make for a more robust policy/model.
 
 <p align="center">
-<img src="TensorFlow/training_samples_videos/left_turn_training_sample.avi" width="300px"><br>
+<video src="TensorFlow/training_samples_videos/left_turn_training_sample.avi" type="video/avi" width="300px"><br>
 Left-turn samples
 </p>
-
-
+  
 <p align="center">
 <img src="media/duckiebot_1.png" width="300px"><br>
 Duckiebot-v0
