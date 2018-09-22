@@ -22,24 +22,24 @@ This simulator was created as part of work done at [Mila](https://mila.quebec/).
 
 ## Modifications in panos branch compared to master branch
 
-Significant modifications in main scripts of simulator.
+1) Significant modifications in main scripts of simulator.
 
-Created a new map in simulation full of intersections
+2) Created a new map in simulation full of intersections
 - `Duckietown-panos_map`
 
-Automate data extraction in intersections:
+3) Automate data extraction in intersections:
 - Press `A` : automatically executes left turn in intersections and collects images and velocities in numpy arrays
 - Press `D` : automatically executes right turn in intersections and collects images and velocities in numpy arrays
 - Press `H` : delete images and velocities from last left turn 
 - Press `J` : delete images and velocities from last right turn 
 - Press `U` : close simulation and save all images and velocities in .npy files
 
-Run TensorFlow graphs in simulator:
+4) Run TensorFlow graphs in simulator:
 - Press `4 (numpad)` : run TensorFlow CNN graph for left turns in intersections
 - Press `6 (numpad)` : run TensorFlow CNN graph for right turns in intersections
 - Press `8 (numpad)` : run TensorFlow CNN graph for lane following
 
-General actions for all the above TensorFlow graphs in simulator:
+5) General actions for all the above TensorFlow graphs in simulator:
 - Press `ESC` : close simulation without saving the images and velocities
 - Press `SPACE` : interrupt all the above actions and returns duckiebot to rest (v=0, omega=0)
 - Press `BACKSPACE` : reset simulation and place duckiebot in random position in the map (all the collected data up to that point are not deleted and continue appending new data to them)
