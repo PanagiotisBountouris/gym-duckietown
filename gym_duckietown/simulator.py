@@ -1034,6 +1034,7 @@ class Simulator(gym.Env):
         # Actions could be a Python list
         action = np.array(action)
 
+
         delta_time = 1 / self.frame_rate
 
         for _ in range(self.frame_skip):
@@ -1046,7 +1047,7 @@ class Simulator(gym.Env):
 
             # Compute the robot's speed
             delta_pos = self.cur_pos - prev_pos
-            self.speed = np.linalg.norm(delta_pos) / delta_time
+            self.speed = abs( np.linalg.norm(delta_pos) / delta_time )
 
             # Update world objects
             for obj in self.objects:
@@ -1064,10 +1065,10 @@ class Simulator(gym.Env):
 
 
         # If the agent is not in a valid pose (on drivable tiles)
-        if not self._valid_pose():
-            reward = -1000
-            done = True
-            return obs, reward, done, {}, omega, self.speed, Vl, Vr
+        # if not self._valid_pose():
+        #     reward = -1000
+        #     done = True
+        #     return obs, reward, done, {}, omega, self.speed, Vl, Vr
 
         # If the maximum time step count is reached
         if self.step_count >= self.max_steps:

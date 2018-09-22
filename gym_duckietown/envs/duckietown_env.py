@@ -43,12 +43,10 @@ class DuckietownEnv(Simulator):
         # Wheel velocity limit
         self.limit = limit
 
-    def step(self, action):
-        vel, angle = action
+    def step(self, action, cnn_mode):
 
         # Distance between the wheels
         baseline = self.unwrapped.wheel_dist
-
         # assuming same motor constants k for both motors
         k_r = self.k
         k_l = self.k
@@ -57,8 +55,20 @@ class DuckietownEnv(Simulator):
         k_r_inv = (self.gain + self.trim) / k_r
         k_l_inv = (self.gain - self.trim) / k_l
 
-        omega_r = (vel + 0.5 * angle * baseline) / self.radius
-        omega_l = (vel - 0.5 * angle * baseline) / self.radius
+        if cnn_mode:
+
+            vel_v, vel_w = action
+
+            omega_r = (vel_v + 0.5 * baseline * vel_w)/self.radius
+            omega_l = (vel_v - 0.5 * baseline * vel_w)/self.radius
+
+        else:
+
+            vel, angle = action
+
+            omega_r = (vel + 0.5 * angle * baseline) / self.radius
+            omega_l = (vel - 0.5 * angle * baseline) / self.radius
+
 
         # conversion from motor rotation rate to duty cycle
         u_r = omega_r * k_r_inv
