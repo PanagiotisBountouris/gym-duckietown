@@ -23,7 +23,7 @@ This simulator was created as part of work done at [Mila](https://mila.quebec/).
 ## Introduction
 
 <p align="center">
-<img src="media/simplesim_1.png" width="300px"><br>
+<video src="TensorFlow/training_samples_videos/left_turn_training_sample.avi" type="video/avi" width="300px"><br>
 Gym-duckietown
 </p>
 
